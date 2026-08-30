@@ -1,0 +1,7 @@
+---
+aws:
+  base_url: $env["AWS_BASE_URL"]
+  region: $env["AWS_REGION"]
+  bucket_name: $env["BUCKET_NAME"]
+  table_names:
+    image_table: $env["IMAGE_TABLE"]
