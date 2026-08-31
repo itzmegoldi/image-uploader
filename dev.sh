@@ -1,10 +1,11 @@
 #!/bin/bash
 
-set -e
+set -euo pipefail
 
 STACK_NAME="my-api"
 REGION="ap-south-1"
 BUCKET_NAME="image-bucket"
+PYTHON_BIN="${PYTHON_BIN:-.venv/bin/python}"
 
 # echo "======================================"
 # if awslocal s3api head-bucket --bucket "$BUCKET_NAME" 2>/dev/null; then
@@ -14,6 +15,18 @@ BUCKET_NAME="image-bucket"
 #     awslocal s3 mb "s3://$BUCKET_NAME"
 # fi
 
+
+
+echo "======================================"
+echo " Running tests and enforcing coverage"
+echo "======================================"
+
+# pytest exits non-zero when a test fails or total coverage is below 75%.
+# With `set -e`, that prevents the build and deployment steps below from running.
+"$PYTHON_BIN" -m pytest \
+  --cov=src \
+  --cov-report=term-missing \
+  --cov-fail-under=75
 
 
 echo "======================================"

@@ -170,8 +170,8 @@ def get_image_url(event, context):
         image_id = query_params.get("image_id")
 
         request = GetImageUrlRequest(
-            user_id=str(user_id),
-            image_id=str(image_id),
+            user_id=user_id,
+            image_id=image_id,
         )
 
         service = get_image_service()
@@ -231,8 +231,8 @@ def delete_image(event, context):
         image_id = query_params.get("image_id")
 
         request = GetImageUrlRequest(
-            user_id=str(user_id),
-            image_id=str(image_id),
+            user_id=user_id,
+            image_id=image_id,
         )
 
         service = get_image_service()
